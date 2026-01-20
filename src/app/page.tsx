@@ -32,7 +32,7 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main className="grow">
         <ProductSection
           title="Man & Woman Fashion"
           products={fashionProducts}

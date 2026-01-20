@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Mecca",
   description: "Mecca - Your favorite Cosmetic destination",
   icons: {
-    icon: "/images/fevicon.png",
+    // icon: "/images/fevicon.png",
   },
 };
 

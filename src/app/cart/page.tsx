@@ -6,8 +6,17 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 import BannerSlider from "@/components/BannerSlider";
 
+/* ================= TYPES (REQUIRED FOR TS) ================= */
+
+type ProductItem = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
 // 3 product items with local images
-const productBoxes = [
+const productBoxes: ProductItem[] = [
   {
     id: 1,
     title: "Velvet Oud",
@@ -29,9 +38,9 @@ const productBoxes = [
 ];
 
 export default function CartPage() {
-  const [items, setItems] = useState(productBoxes);
+  const [items, setItems] = useState<ProductItem[]>(productBoxes);
 
-  const handleDelete = (id) => {
+  const handleDelete = (id: number): void => {
     setItems(items.filter((item) => item.id !== id));
   };
 
@@ -85,7 +94,6 @@ export default function CartPage() {
                 >
                   🗑️
                 </button>
-               
               </div>
             </div>
           ))}
@@ -94,7 +102,7 @@ export default function CartPage() {
         {/* Pay Now Button */}
         <div className="flex justify-center mt-12 w-full">
           <a
-            href="https://wa.me/923001234567" // 🔁 replace with your number
+            href="https://wa.me/923001234567"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-orange-500 text-black px-12 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition-shadow duration-300 shadow-lg hover:shadow-xl"
