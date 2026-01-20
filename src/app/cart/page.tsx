@@ -15,6 +15,8 @@ type ProductItem = {
   image: string;
 };
 
+/* ================= DATA (UNCHANGED) ================= */
+
 // 3 product items with local images
 const productBoxes: ProductItem[] = [
   {
@@ -37,11 +39,13 @@ const productBoxes: ProductItem[] = [
   },
 ];
 
+/* ================= PAGE ================= */
+
 export default function CartPage() {
   const [items, setItems] = useState<ProductItem[]>(productBoxes);
 
   const handleDelete = (id: number): void => {
-    setItems(items.filter((item) => item.id !== id));
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
   return (
