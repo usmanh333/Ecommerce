@@ -1,0 +1,6 @@
+/* Only custom site styles */
+@import "../styles/style.css";
+@import "../styles/responsive.css";
+
+/* Tailwind CSS */
+@import "tailwindcss";
