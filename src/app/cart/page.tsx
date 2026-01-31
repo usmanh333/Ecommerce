@@ -1,122 +1,92 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import Image from "next/image";
-import BannerSlider from "@/components/BannerSlider";
-
-/* ================= TYPES (REQUIRED FOR TS) ================= */
-
-type ProductItem = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-};
-
-/* ================= DATA (UNCHANGED) ================= */
-
-// 3 product items with local images
-const productBoxes: ProductItem[] = [
-  {
-    id: 1,
-    title: "Velvet Oud",
-    description: "Luxurious oud fragrance with deep and warm notes.",
-    image: "/images/images (5).jpeg",
-  },
-  {
-    id: 2,
-    title: "Rose Whisper",
-    description: "Soft floral aroma with delicate, elegant undertones.",
-    image: "/images/images (6).jpeg",
-  },
-  {
-    id: 3,
-    title: "Fresh Breeze Deodorant",
-    description: "Long-lasting freshness with a light, invigorating scent.",
-    image: "/images/VzUqgr8pfbNcfXrpzeVBPE.jpg",
-  },
-];
-
-/* ================= PAGE ================= */
+import Link from 'next/link';
+import Image from 'next/image';
+import { useCart } from '@/context/CartContext';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import BannerSlider from '@/components/BannerSlider';
 
 export default function CartPage() {
-  const [items, setItems] = useState<ProductItem[]>(productBoxes);
-
-  const handleDelete = (id: number): void => {
-    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
-  };
+  const { cartItems, removeFromCart } = useCart();
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col">
+      {/* Header + Banner */}
       <div className="banner_bg_main">
         <Header />
         <BannerSlider />
       </div>
 
-      <div className="banner_bg_main relative w-full h-64 py-50">
-        <Image
-          src="/images/ChatGPT Image Jan 18, 2026, 10_18_13 PM.png"
-          alt="Cart Banner"
-          fill
-          className="object-cover"
-        />
-      </div>
+      {/* CART CONTENT */}
+      <div className="grow p-6 max-w-4xl mx-auto w-full">
+        {cartItems.length === 0 ? (
+          /* EMPTY CART */
+          <div className="text-center py-20">
+            <h2 className="text-2xl font-bold mb-4">
+              You have nothing in your cart
+            </h2>
 
-      {/* Main container */}
-      <div className="min-h-[calc(100vh-64px-64px)] flex flex-col justify-center items-center px-6 py-10 w-full">
-        <div className="flex flex-col gap-8 w-full max-w-4xl">
-          {items.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center bg-white text-black rounded-xl shadow-2xl overflow-hidden h-40 w-full"
+            <Link
+              href="/fashion"
+              className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center"
             >
-              {/* Image */}
-              <div className="w-40 h-full shrink-0">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  width={160}
-                  height={160}
-                  className="object-cover h-full w-full"
-                />
-              </div>
+              Go to Shopping
+            </Link>
+            
+          </div>
+        ) : (
+          /* CART ITEMS */
+          <>
+            {cartItems.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-center gap-4 border p-4 rounded mb-4 shadow-sm"
+              >
+                {/* IMAGE CENTER */}
+                <div className="relative w-32 h-32 shrink-0">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
 
-              {/* Details */}
-              <div className="flex flex-col justify-center px-6 flex-1">
-                <h2 className="text-xl font-semibold">{item.title}</h2>
-                <p className="text-gray-700 mt-1">{item.description}</p>
-              </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-lg">{item.name}</h3>
+                  <p className="text-gray-600">
+                    {item.priceLabel}: {item.price}
+                  </p>
 
-              {/* Actions */}
-              <div className="flex flex-col justify-center px-6 gap-3">
-                <button
-                  onClick={() => handleDelete(item.id)}
-                  className="text-red-600 hover:text-red-800 text-2xl"
-                  title="Delete"
-                >
-                  🗑️
-                </button>
+                  <button
+                    onClick={() => removeFromCart(item.name)}
+                    className="text-red-600 mt-2 flex items-center gap-1 hover:underline"
+                  >
+                    <i className="fa fa-trash" />
+                    Remove
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
 
-        {/* Pay Now Button */}
-        <div className="flex justify-center mt-12 w-full">
-          <a
-            href="https://wa.me/923001234567"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-orange-500 text-black px-12 py-4 rounded-full text-lg font-semibold hover:bg-orange-600 transition-shadow duration-300 shadow-lg hover:shadow-xl"
-          >
-            Pay Now
-          </a>
-        </div>
+            {/* PAY NOW */}
+           <a
+  href="https://wa.me/923001234567"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center
+  "
+>
+  Pay Now on WhatsApp
+</a>
+
+          </>
+        )}
       </div>
 
+      {/* FOOTER */}
       <Footer />
-    </>
+    </div>
   );
 }

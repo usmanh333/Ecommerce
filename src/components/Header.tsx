@@ -1,163 +1,181 @@
-'use client';
+'use client'; 
 
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import { useCart } from '@/context/CartContext';
+import { FiShoppingCart } from "react-icons/fi";
+
+// Example products for search
+const products = [
+  'iPhone 14',
+  'Samsung Galaxy S23',
+  'MacBook Pro',
+  'Nike Sneakers',
+  'Gold Necklace',
+  'Leather Jacket',
+  'AirPods Pro',
+  'Laptop Bag'
+];
 
 export default function Header() {
   const [sidenavOpen, setSidenavOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const { cartCount } = useCart(); // ✅ from CartContext
 
-  const openNav = () => {
-    setSidenavOpen(true);
-  };
+  const openNav = () => setSidenavOpen(true);
+  const closeNav = () => setSidenavOpen(false);
 
-  const closeNav = () => {
-    setSidenavOpen(false);
-  };
+  // Exact match for search
+  const exactMatch =
+    products.find(
+      (product) =>
+        product.toLowerCase() === searchTerm.trim().toLowerCase()
+    ) || null;
 
   return (
     <>
-      {/* header top section start */}
+      {/* ================= TOP MENU / MARKETING LINE ================= */}
       <div className="container">
-        <div className="header_section_top">
+        <div className="header_section_top block py-2">
           <div className="row">
-            <div className="col-sm-12">
-              <div className="custom_menu">
-                <ul>
-                  <li><Link href="#">Best Sellers</Link></li>
-                  <li><Link href="#">Gift Ideas</Link></li>
-                  <li><Link href="#">New Releases</Link></li>
-                  <li><Link href="#">Today&apos;s Deals</Link></li>
-                  <li><Link href="#">Customer Service</Link></li>
-                </ul>
-              </div>
+            <div className="col-sm-12 text-center">
+              <p className="text-white font-semibold text-sm animate-pulse">
+                Trusted Quality • Fast Delivery • Best Prices in Pakistan
+              </p>
             </div>
           </div>
         </div>
       </div>
-      {/* header top section end */}
 
-      {/* logo section start */}
-      <div className="logo_section">
+      {/* ================= LOGO ================= */}
+      <div className="logo_section py-6">
         <div className="container">
           <div className="row">
-            <div className="col-sm-12">
-              <div className="logo">
-                <Link href="/">
-  <Image
-    src="/images/logo.jpeg"
-    alt="Logo"
-    width={100}
-    height={40}
-    className="rounded-full"
-  />
+            <div className="col-sm-12 text-center">
+              <Link href="/">
+                <Image
+                  src="/images/logo.jpeg"
+                  alt="Logo"
+                  width={120}
+                  height={50}
+                  className="rounded-full mx-auto"
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ================= MAIN HEADER ================= */}
+      <div className="header_section">
+        <div className="container">
+          <div className="containt_main flex items-center gap-4">
+
+            {/* -------- MOBILE SIDE NAV ONLY -------- */}
+            <div
+              id="mySidenav"
+              className="sidenav md:hidden"
+              style={{ width: sidenavOpen ? '250px' : '0' }}
+            >
+              <a className="closebtn" onClick={closeNav}>
+                &times;
+              </a>
+              <Link href="/" onClick={closeNav}>Home</Link>
+              <Link href="/fashion" onClick={closeNav}>Fashion</Link>
+              <Link href="/electronic" onClick={closeNav}>Electronic</Link>
+              <Link href="/jewellery" onClick={closeNav}>Jewellery</Link>
+            </div>
+
+            {/* MOBILE HAMBURGER */}
+            <span
+              className="toggle_icon cursor-pointer md:hidden"
+              onClick={openNav}
+            >
+              <Image src="/images/toggle-icon.png" alt="Menu" width={30} height={30} />
+            </span>
+
+            {/* DESKTOP BUTTONS + SEARCH BAR */}
+            <div className="containt_main flex flex-col items-center gap-4 w-full">
+              {/* -------- DESKTOP PAGE BUTTONS -------- */}
+              <div className="hidden md:flex justify-center gap-4 w-full mb-2">
+                <Link
+                  href="/"
+                  className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center"
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/fashion"
+                  className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center"
+                >
+                  Fashion
+                </Link>
+                <Link
+                  href="/electronic"
+                  className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center"
+                >
+                  Electronic
+                </Link>
+                <Link
+                  href="/jewellery"
+                  className="px-5 py-2 rounded-lg bg-black! text-white! font-semibold shadow-md hover:bg-yellow-600! hover:scale-105 transition transform duration-300 block text-center"
+                >
+                  Jewellery
+                </Link>
+              </div>
+              {/* -------- SEARCH + CART ROW -------- */}
+              <div className="w-full flex flex-col md:flex-row items-center gap-3">
+
+                {/* SEARCH BAR */}
+                <div className="input-group w-full relative">
+                  <input
+                    type="text"
+                    className="form-control border rounded-md w-full px-3 py-2"
+                    placeholder="Search products"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <div className="input-group-append absolute right-2 top-1/2 -translate-y-1/2">
+                    <button
+                      className="btn btn-secondary px-3 py-1 bg-orange-500 border-orange-500 text-white rounded-md"
+                      type="button"
+                    >
+                      <i className="fa fa-search"></i>
+                    </button>
+                  </div>
+                </div>
+
+                {/* CART ICON */}
+              <Link
+  href="/cart"
+  className="relative flex items-center gap-2 text-black whitespace-nowrap"
+>
+  <FiShoppingCart className="text-2xl text-white" /> {/* force white color */}
+  <span>Cart</span>
+
+  {cartCount > 0 && (
+    <span className="absolute -top-2 -right-3 bg-red-600 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center font-bold">
+      {cartCount}
+    </span>
+  )}
 </Link>
 
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* logo section end */}
 
-      {/* header section start */}
-      <div className="header_section">
-        <div className="container">
-          <div className="containt_main" style={{ display: 'flex', alignItems: 'center' }}>
-            <div
-              id="mySidenav"
-              className="sidenav"
-              style={{ width: sidenavOpen ? '250px' : '0' }}
-            >
-              <a href="#" className="closebtn" onClick={closeNav}>&times;</a>
-              <Link href="/">Home</Link>
-              <Link href="/fashion">Fashion</Link>
-              <Link href="/electronic">Electronic</Link>
-              <Link href="/jewellery">Jewellery</Link>
-            </div>
-
-            <span className="toggle_icon" onClick={openNav}>
-              <Image src="/images/toggle-icon.png" alt="Toggle" width={30} height={30} />
-            </span>
-
-            <div className="dropdown">
-              <button
-                className="btn btn-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
-                All Category
-              </button>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                <a className="dropdown-item" href="#">Action</a>
-                <a className="dropdown-item" href="#">Another action</a>
-                <a className="dropdown-item" href="#">Something else here</a>
-              </div>
-            </div>
-
-            {/* Search + Cart together */}
-            <div className="main" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-              <div className="input-group">
-                <input type="text" className="form-control" placeholder="Search this blog" />
-                <div className="input-group-append">
-                  <button
-                    className="btn btn-secondary"
-                    type="button"
-                    style={{ backgroundColor: '#f26522', borderColor: '#f26522' }}
-                  >
-                    <i className="fa fa-search"></i>
-                  </button>
+              {/* -------- SEARCH RESULT (EXACT MATCH ONLY) -------- */}
+              {exactMatch && (
+                <div className="w-full text-center mt-2">
+                  <p className="font-semibold text-green-600">
+                    Product Found: {exactMatch}
+                  </p>
                 </div>
-              </div>
-
-              {/* Cart on search side */}
-              <div>
-                <a href="/cart" style={{ display: 'flex',  color: 'white', alignItems: 'center', gap: '6px' }}>
-                  <i className="fa fa-shopping-bag" aria-hidden="true"></i>
-                  <span className="padding_10">Cart</span>
-                </a>
-              </div>
+              )}
             </div>
-
-            {/* ========================= */}
-            {/* COMMENTED: Language & old Cart */}
-            {/* ========================= */}
-
-            {/*
-            <div className="header_box">
-              <div className="lang_box">
-                <a href="#" title="Language" className="nav-link" data-toggle="dropdown" aria-expanded="true">
-                  <Image src="/images/flag-uk.png" alt="flag" className="mr-2" title="United Kingdom" width={20} height={15} /> 
-                  English <i className="fa fa-angle-down ml-2" aria-hidden="true"></i>
-                </a>
-                <div className="dropdown-menu">
-                  <a href="#" className="dropdown-item">
-                    <Image src="/images/flag-france.png" className="mr-2" alt="flag" width={20} height={15} />
-                    French
-                  </a>
-                </div>
-              </div>
-
-              <div className="login_menu">
-                <ul>
-                  <li>
-                    <a href="#">
-                      <i className="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <span className="padding_10">Cart</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            */}
 
           </div>
         </div>
       </div>
-      {/* header section end */}
     </>
   );
 }
