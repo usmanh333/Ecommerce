@@ -34,7 +34,7 @@ export default function PaymentPage() {
             <Link href="/cart" className="luxury-btn">
               Go to Cart Checkout
             </Link>
-            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer" className="luxury-btn ghost">
+            <a href="https://wa.me/9234576235" target="_blank" rel="noreferrer" className="luxury-btn ghost">
               Contact on WhatsApp
             </a>
           </div>

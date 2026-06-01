@@ -33,7 +33,7 @@ export default function Footer() {
           <nav>
             <a href="#faq">FAQs</a>
             <Link href="/payment">Checkout</Link>
-            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer">
+            <a href="https://wa.me/9234576235" target="_blank" rel="noreferrer">
               WhatsApp Orders
             </a>
           </nav>
@@ -45,7 +45,7 @@ export default function Footer() {
             <Link href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
               <FaInstagram />
             </Link>
-            <Link href="https://wa.me/923001234567" target="_blank" aria-label="WhatsApp">
+            <Link href="https://wa.me/9234576235" target="_blank" aria-label="WhatsApp">
               <FaWhatsapp />
             </Link>
             <Link href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook">

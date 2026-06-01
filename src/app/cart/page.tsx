@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import BannerSlider from '@/components/BannerSlider';
 import { buildWhatsAppMessage, formatPrice, getWhatsAppCheckoutLink } from '@/lib/shop';
 
-const WHATSAPP_PHONE = '923001234567';
+const WHATSAPP_PHONE = '9234576235';
 
 export default function CartPage() {
   const { cartItems, removeFromCart, updateQuantity, subtotal } = useCart();
