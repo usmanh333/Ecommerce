@@ -2,45 +2,29 @@
 
 import Link from 'next/link';
 
-export default function BannerSlider() {
+type BannerSliderProps = {
+  title?: string;
+  subtitle?: string;
+  image?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+};
+
+export default function BannerSlider({
+  title = 'Luxury Beauty, Delivered',
+  subtitle = 'Shop curated fragrances, fairness care, and premium skincare rituals.',
+  image = '/images/VzUqgr8pfbNcfXrpzeVBPE.jpg',
+  ctaLabel = 'Explore Products',
+  ctaHref = '/fashion',
+}: BannerSliderProps) {
   return (
-    <div className="banner_section layout_padding">
-      <div className="container">
-        <div id="my_slider" className="carousel slide" data-ride="carousel">
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="row">
-                <div className="col-sm-12">
-                  <h1 className="banner_taital">Get Start <br />Your favriot shoping</h1>
-                  <div className="buynow_bt"><Link href="/jewellery">Shop Now</Link></div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="row">
-                <div className="col-sm-12">
-                  <h1 className="banner_taital">Get Start <br />Your favriot shoping</h1>
-                  <div className="buynow_bt"><Link href="/jewellery">Shop Now</Link></div>
-                </div>
-              </div>
-            </div>
-            <div className="carousel-item">
-              <div className="row">
-                <div className="col-sm-12">
-                  <h1 className="banner_taital">Get Start <br />Your favriot shoping</h1>
-                  <div className="buynow_bt"><Link href="/jewellery">Shop Now</Link></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* <a className="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
-            <i className="fa fa-angle-left"></i>
-          </a>
-          <a className="carousel-control-next" href="#my_slider" role="button" data-slide="next">
-            <i className="fa fa-angle-right"></i>
-          </a> */}
-        </div>
+    <section className="inner-hero" style={{ backgroundImage: `linear-gradient(110deg, rgba(16, 11, 10, 0.72), rgba(16, 11, 10, 0.26)), url(${image})` }}>
+      <div className="inner-hero-content">
+        <p>Luxury Collection</p>
+        <h1>{title}</h1>
+        <span>{subtitle}</span>
+        <Link href={ctaHref}>{ctaLabel}</Link>
       </div>
-    </div>
+    </section>
   );
 }

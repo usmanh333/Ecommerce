@@ -1,69 +1,47 @@
 "use client";
 
-import Image from "next/image";
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import BannerSlider from '@/components/BannerSlider';
+import Link from 'next/link';
 export default function PaymentPage() {
   return (
-    <>
+    <div>
       <Header />
- <BannerSlider />
-      <div className="min-h-screen bg-gray-50">
-        {/* Hero */}
-        <div className="relative h-64 w-full">
-          <Image
-            src="/banners/perfume-payment-banner.jpg"
-            alt="Checkout"
-            fill
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-            <h1 className="text-white text-4xl font-bold">Secure Checkout</h1>
+      <BannerSlider
+        title="Secure Checkout"
+        subtitle="Complete your order details and confirm instantly through WhatsApp checkout."
+        image="/images/VzUqgr8pfbNcfXrpzeVBPE.jpg"
+        ctaLabel="Return to Cart"
+        ctaHref="/cart"
+      />
+
+      <main className="section-shell">
+        <div className="cart-summary" style={{ maxWidth: 680, margin: '0 auto' }}>
+          <h2 style={{ marginTop: 0 }}>Checkout Information</h2>
+          <p style={{ color: 'var(--text-muted)' }}>
+            This frontend-only store confirms purchases through WhatsApp. Review your selected products in cart and send
+            your order details securely.
+          </p>
+
+          <ul>
+            <li>Add products to cart.</li>
+            <li>Set product quantities and customer name.</li>
+            <li>Tap Checkout on WhatsApp to send a fully formatted order summary.</li>
+          </ul>
+
+          <div style={{ display: 'flex', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <Link href="/cart" className="luxury-btn">
+              Go to Cart Checkout
+            </Link>
+            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer" className="luxury-btn ghost">
+              Contact on WhatsApp
+            </a>
           </div>
         </div>
-
-        <div className="max-w-2xl mx-auto px-6 py-12">
-          <div className="bg-white p-8 rounded-2xl shadow-lg">
-            <h2 className="text-2xl font-bold mb-6 text-center">
-              Payment Details
-            </h2>
-
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Cardholder Name"
-                className="w-full border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
-              <input
-                type="text"
-                placeholder="Card Number"
-                className="w-full border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-              />
-              <div className="grid grid-cols-2 gap-4">
-                <input
-                  type="text"
-                  placeholder="MM/YY"
-                  className="border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                />
-                <input
-                  type="password"
-                  placeholder="CVV"
-                  className="border px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-black text-white py-3 rounded-full text-lg hover:bg-gray-800 transition"
-              >
-                Pay Now
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
+      </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

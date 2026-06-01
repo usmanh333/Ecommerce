@@ -1,109 +1,99 @@
 'use client';
 
-import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import BannerSlider from '@/components/BannerSlider';
-import { useCart } from '@/context/CartContext';
+import BrandHero from '@/components/BrandHero';
+import ProductShelf from '@/components/ProductShelf';
+import CategoryShowcase from '@/components/CategoryShowcase';
+import Testimonials from '@/components/Testimonials';
+import PromoBanners from '@/components/PromoBanners';
+import FaqAccordion from '@/components/FaqAccordion';
+import Newsletter from '@/components/Newsletter';
+import { useMemo, useState } from 'react';
+import {
+  bestSellers,
+  brandStats,
+  categories,
+  faqs,
+  featuredProducts,
+  productCategories,
+  products,
+  promoBanners,
+  testimonials,
+} from '@/data/catalog';
 
 export default function Home() {
-  const { addToCart } = useCart();
+  const [categoryFilter, setCategoryFilter] = useState('All');
 
-  const products = [
-    {
-      name: 'Man T-shirt',
-      price: '$30',
-      image: '/images/tshirt-img.png',
-      priceLabel: 'Price',
-    },
-    {
-      name: 'Man Shirt',
-      price: '$30',
-      image: '/images/dress-shirt-img.png',
-      priceLabel: 'Price',
-    },
-    {
-      name: 'Woman Scarf',
-      price: '$30',
-      image: '/images/women-clothes-img.png',
-      priceLabel: 'Price',
-    },
-    {
-      name: 'Laptop',
-      price: '$100',
-      image: '/images/laptop-img.png',
-      priceLabel: 'Start Price',
-    },
-    {
-      name: 'Mobile',
-      price: '$100',
-      image: '/images/mobile-img.png',
-      priceLabel: 'Start Price',
-    },
-    {
-      name: 'Computer',
-      price: '$100',
-      image: '/images/computer-img.png',
-      priceLabel: 'Start Price',
-    },
-    {
-      name: 'Jhumkas',
-      price: '$100',
-      image: '/images/jhumka-img.png',
-      priceLabel: 'Start Price',
-    },
-    {
-      name: 'Necklace',
-      price: '$100',
-      image: '/images/neklesh-img.png',
-      priceLabel: 'Start Price',
-    },
-  ];
+  const filteredProducts = useMemo(() => {
+    if (categoryFilter === 'All') return featuredProducts;
+    return featuredProducts.filter((product) => product.category === categoryFilter);
+  }, [categoryFilter]);
 
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Header + Banner */}
-      <div className="banner_bg_main">
-        <Header />
-        <BannerSlider />
-      </div>
+    <div>
+      <Header />
 
-      {/* PRODUCTS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 p-6">
-        {products.map((product, index) => (
-          <div
-            key={index}
-            className="border rounded-lg shadow hover:shadow-lg transition flex flex-col items-center p-4"
-          >
-            {/* IMAGE CENTER */}
-            <div className="relative w-40 h-40 mb-4">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-contain"
-              />
-            </div>
+      <BrandHero banners={promoBanners} />
 
-            <h2 className="font-semibold text-lg text-center">
-              {product.name}
-            </h2>
+      <section className="section-shell">
+        <div className="section-head">
+          <h2>Luxury Beauty Destination</h2>
+          <p>
+            Discover premium perfumes, oud fragrances, fairness care, and skincare essentials with an elegant shopping
+            experience.
+          </p>
+        </div>
 
-            <p className="text-gray-600 text-center mt-1">
-              {product.priceLabel}: {product.price}
-            </p>
+        <div className="stats-grid">
+          {brandStats.map((stat) => (
+            <article key={stat.label} className="stat-card">
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </article>
+          ))}
+        </div>
+      </section>
 
-            <button
-              onClick={() => addToCart(product)}
-              className="mt-4 bg-yellow-600 text-white px-4 py-2 rounded hover:bg-yellow-700 transition w-full"
-            >
-              Add to Cart
-            </button>
-          </div>
-        ))}
-      </div>
+      <section className="section-shell">
+        <div className="section-head">
+          <h2>Featured Perfumes & Cosmetics</h2>
+          <p>Filter highlighted products by category to quickly find your ideal beauty picks.</p>
+        </div>
 
-      {/* Footer */}
+        <div className="filter-row">
+          <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)}>
+            <option value="All">All Categories</option>
+            {productCategories.map((cat) => (
+              <option key={cat} value={cat}>{cat}</option>
+            ))}
+          </select>
+        </div>
+      </section>
+
+      <ProductShelf
+        title="Featured Collection"
+        subtitle="Top luxury picks with premium quality and trusted customer love"
+        products={filteredProducts}
+      />
+
+      <ProductShelf
+        title="Skincare & Creams"
+        subtitle="Brightening, nourishing skincare products for a radiant daily glow"
+        products={products.filter((item) => item.category === 'Skincare')}
+      />
+
+      <ProductShelf
+        title="Best Sellers"
+        subtitle="Most purchased fragrances and cosmetic sets this week"
+        products={bestSellers}
+      />
+
+      <CategoryShowcase categories={categories} />
+      <PromoBanners banners={promoBanners} />
+      <Testimonials items={testimonials} />
+      <FaqAccordion items={faqs} />
+      <Newsletter />
       <Footer />
     </div>
   );

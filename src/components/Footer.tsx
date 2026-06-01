@@ -6,50 +6,61 @@ import { FaInstagram, FaWhatsapp, FaFacebookF, FaTwitter } from "react-icons/fa"
 
 export default function Footer() {
   return (
-    <footer className="bg-linear-to-r from-black via-gray-900 to-black py-10 text-white">
-      <div className="container mx-auto flex flex-col md:flex-row md:justify-between items-center gap-6">
-
-        {/* Logo with white border */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/images/logo.jpeg"
-            alt="Footer Logo"
-            width={80}
-            height={40}
-            className="rounded-full border-2 border-white p-1"
-          />
-        </Link>
-
-        {/* Footer Links */}
-        <div className="flex flex-wrap justify-center md:justify-start gap-6 text-sm font-medium">
-          <Link href="/" className="text-white hover:text-yellow-500 transition">Home</Link>
-          <Link href="/fashion" className="text-white hover:text-yellow-500 transition">Fashion</Link>
-          <Link href="/electronic" className="text-white hover:text-yellow-500 transition">Electronics</Link>
-          <Link href="/jewellery" className="text-white hover:text-yellow-500 transition">Jewellery</Link>
-        </div>
-
-        {/* Social Icons with white color and hover effect */}
-        <div className="flex gap-5 text-2xl">
-          <Link href="https://instagram.com/yourprofile" target="_blank" className="text-white hover:text-yellow-500 transition transform hover:scale-110">
-            <FaInstagram />
-          </Link>
-          <Link href="https://wa.me/923000000000" target="_blank" className="text-white hover:text-yellow-500 transition transform hover:scale-110">
-            <FaWhatsapp />
-          </Link>
-          <Link href="https://facebook.com/yourprofile" target="_blank" className="text-white hover:text-yellow-500 transition transform hover:scale-110">
-            <FaFacebookF />
-          </Link>
-          <Link href="https://twitter.com/yourprofile" target="_blank" className="text-white hover:text-yellow-500 transition transform hover:scale-110">
-            <FaTwitter />
+    <footer className="site-footer">
+      <div className="footer-grid">
+        <div className="footer-brand">
+          <Link href="/" className="footer-logo">
+            <Image src="/images/logo.jpeg" alt="Mecca Cosmetic" width={56} height={56} />
+            <div>
+              <strong>Mecca Cosmetic</strong>
+              <p>Premium perfumes, skincare, and beauty essentials curated for modern elegance.</p>
+            </div>
           </Link>
         </div>
 
+        <div>
+          <h4>Collections</h4>
+          <nav>
+            <Link href="/fashion">Perfumes</Link>
+            <Link href="/electronic">Skincare</Link>
+            <Link href="/jewellery">Beauty</Link>
+            <Link href="/cart">Cart</Link>
+          </nav>
+        </div>
+
+        <div>
+          <h4>Customer Care</h4>
+          <nav>
+            <a href="#faq">FAQs</a>
+            <Link href="/payment">Checkout</Link>
+            <a href="https://wa.me/923001234567" target="_blank" rel="noreferrer">
+              WhatsApp Orders
+            </a>
+          </nav>
+        </div>
+
+        <div>
+          <h4>Connect</h4>
+          <div className="socials">
+            <Link href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+              <FaInstagram />
+            </Link>
+            <Link href="https://wa.me/923001234567" target="_blank" aria-label="WhatsApp">
+              <FaWhatsapp />
+            </Link>
+            <Link href="https://facebook.com/yourprofile" target="_blank" aria-label="Facebook">
+              <FaFacebookF />
+            </Link>
+            <Link href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+              <FaTwitter />
+            </Link>
+          </div>
+        </div>
       </div>
 
-      {/* Copyright */}
-      <p className="text-sm text-gray-400 text-center mt-6">
-        © {new Date().getFullYear()} All rights reserved.
-      </p>
+      <div className="footer-bottom">
+        <p>© {new Date().getFullYear()} Mecca Cosmetic. Crafted for premium beauty shopping.</p>
+      </div>
     </footer>
   );
 }
