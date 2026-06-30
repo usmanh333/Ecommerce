@@ -9,7 +9,7 @@ import Footer from '@/components/Footer';
 import BannerSlider from '@/components/BannerSlider';
 import { buildWhatsAppMessage, formatPrice, getWhatsAppCheckoutLink, CustomerDetails } from '@/lib/shop';
 
-const WHATSAPP_PHONE = '923234576235';
+const WHATSAPP_PHONE = '923208046707';
 
 const PAKISTAN_CITIES = [
   'Karachi', 'Lahore', 'Islamabad', 'Rawalpindi', 'Faisalabad',

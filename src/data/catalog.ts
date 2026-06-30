@@ -59,7 +59,7 @@ export const products: Product[] = [
     rating: 4.9,
     featured: true,
     availability: "In Stock",
-    images: ["/images/data/products/p2-1.jpeg", "/images/data/products/p2-2.jpeg", "/images/data/products/p2-3.jpeg", "/images/data/products/p2-4.jpeg"],
+    images: ["/images/data/products/p2-1.jpeg", "/images/data/products/p2-2.jpeg", "/images/data/products/p2-4.jpeg"],
     description: "A sweet feminine mist with notes of berries, peony, and soft powder.",
     ingredients: ["Berry accord", "Peony", "Soft musk", "Powder base"],
     usage: "Spray on pulse points and hair for all-day freshness.",
@@ -115,7 +115,7 @@ export const products: Product[] = [
   },
   {
     id: 6,
-    name: "Mecca Body Mist No.6",
+    name: "Mecca Love Addiet",
     slug: "mecca-body-mist-6",
     category: "Perfumes",
     price: 867,
@@ -147,7 +147,7 @@ export const products: Product[] = [
   },
   {
     id: 8,
-    name: "Mecca Body Mist No.8",
+    name: "Mecca Aqua Dream",
     slug: "mecca-body-mist-8",
     category: "Perfumes",
     price: 867,
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     id: 9,
-    name: "Mecca Jacomo",
+    name: "Mecca Love Spell",
     slug: "mecca-body-mist-9",
     category: "Perfumes",
     price: 867,
@@ -171,7 +171,7 @@ export const products: Product[] = [
     rating: 4.9,
     featured: true,
     availability: "In Stock",
-    images: ["/images/data/products/p9-1.jpeg", "/images/data/products/p9-2.jpeg"],
+    images: ["/images/data/products/p9-1.jpeg", "/images/data/products/p9-2.jpeg","/images/data/products/p2-3.jpeg"],
     description: "A soft powdery rose mist with iris, peach, and clean white musk.",
     ingredients: ["Rose", "Iris", "Peach accord", "White musk"],
     usage: "Spritz on skin and clothes for a delicate, long-lasting scent.",
@@ -179,7 +179,7 @@ export const products: Product[] = [
   },
   {
     id: 10,
-    name: "Mecca Body Mist No.10",
+    name: "Mecca Janan Gold",
     slug: "mecca-body-mist-10",
     category: "Perfumes",
     price: 867,
@@ -211,7 +211,7 @@ export const products: Product[] = [
   },
   {
     id: 12,
-    name: "Mecca Body Mist No.12",
+    name: "Mecca Midnight Blossom",
     slug: "mecca-body-mist-12",
     category: "Perfumes",
     price: 867,
@@ -243,7 +243,7 @@ export const products: Product[] = [
   },
   {
     id: 14,
-    name: "Mecca Body Mist No.14",
+    name: "Mecca V.E Rose",
     slug: "mecca-body-mist-14",
     category: "Perfumes",
     price: 867,
@@ -259,7 +259,7 @@ export const products: Product[] = [
   },
   {
     id: 15,
-    name: "Mecca Body Mist No.15",
+    name: "Mecca Creed",
     slug: "mecca-body-mist-15",
     category: "Perfumes",
     price: 867,
@@ -414,7 +414,7 @@ export const promoBanners: PromoBanner[] = [
     subtitle: "Up to 25% off on all premium Mecca body mists",
     ctaLabel: "Explore Offers",
     ctaHref: "/fashion",
-    image: "/images/data/sliders/s1.jpeg",
+    image: "/images/data/sliders/new1.jpeg",
   },
   {
     id: 2,
@@ -422,7 +422,7 @@ export const promoBanners: PromoBanner[] = [
     subtitle: "Premium skincare for radiant, nourished skin",
     ctaLabel: "Shop Skincare",
     ctaHref: "/electronic",
-    image: "/images/data/sliders/s2.jpeg",
+    image: "/images/data/sliders/new2.jpeg",
   },
   {
     id: 3,
