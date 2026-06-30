@@ -35,7 +35,7 @@ export const categories: Category[] = [
 export const products: Product[] = [
   {
     id: 1,
-    name: "Mecca Body Mist No.1",
+    name: "Mecca Dirham",
     slug: "mecca-body-mist-1",
     category: "Perfumes",
     price: 867,
@@ -51,7 +51,7 @@ export const products: Product[] = [
   },
   {
     id: 2,
-    name: "Mecca Body Mist No.2",
+    name: "Mecca Jacomo",
     slug: "mecca-body-mist-2",
     category: "Perfumes",
     price: 867,
@@ -67,7 +67,7 @@ export const products: Product[] = [
   },
   {
     id: 3,
-    name: "Mecca Body Mist No.3",
+    name: "Mecca Secret Love",
     slug: "mecca-body-mist-3",
     category: "Perfumes",
     price: 867,
@@ -83,7 +83,7 @@ export const products: Product[] = [
   },
   {
     id: 4,
-    name: "Mecca Body Mist No.4",
+    name: "Mecca Chick",
     slug: "mecca-body-mist-4",
     category: "Perfumes",
     price: 867,
@@ -99,7 +99,7 @@ export const products: Product[] = [
   },
   {
     id: 5,
-    name: "Mecca Body Mist No.5",
+    name: "Mecca 212",
     slug: "mecca-body-mist-5",
     category: "Perfumes",
     price: 867,
@@ -131,7 +131,7 @@ export const products: Product[] = [
   },
   {
     id: 7,
-    name: "Mecca Body Mist No.7",
+    name: "Mecca Ocean Flora",
     slug: "mecca-body-mist-7",
     category: "Perfumes",
     price: 867,
@@ -163,7 +163,7 @@ export const products: Product[] = [
   },
   {
     id: 9,
-    name: "Mecca Body Mist No.9",
+    name: "Mecca Jacomo",
     slug: "mecca-body-mist-9",
     category: "Perfumes",
     price: 867,
@@ -195,7 +195,7 @@ export const products: Product[] = [
   },
   {
     id: 11,
-    name: "Mecca Body Mist No.11",
+    name: "Mecca Love Fresh",
     slug: "mecca-body-mist-11",
     category: "Perfumes",
     price: 867,
@@ -227,7 +227,7 @@ export const products: Product[] = [
   },
   {
     id: 13,
-    name: "Mecca Body Mist No.13",
+    name: "Mecca Secret",
     slug: "mecca-body-mist-13",
     category: "Perfumes",
     price: 867,
@@ -275,7 +275,7 @@ export const products: Product[] = [
   },
   {
     id: 16,
-    name: "Mecca Body Mist No.16",
+    name: "Mecca White Charm",
     slug: "mecca-body-mist-16",
     category: "Perfumes",
     price: 867,

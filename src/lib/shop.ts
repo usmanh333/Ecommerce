@@ -15,25 +15,42 @@ export const getRelatedProducts = (products: Product[], product: Product, limit 
     .filter((item) => item.slug !== product.slug && item.category === product.category)
     .slice(0, limit);
 
+export interface CustomerDetails {
+  name: string;
+  phone: string;
+  city: string;
+  area: string;
+  address: string;
+  landmark?: string;
+}
+
 export const buildWhatsAppMessage = (
-  customerName: string,
+  customer: CustomerDetails,
   lineItems: Array<{ name: string; quantity: number; lineTotal: number }>,
   total: number,
 ) => {
-  const safeName = customerName.trim() || "Not Provided";
   const lines = lineItems
     .map((item, index) => `${index + 1}. ${item.name} x${item.quantity} - ${formatPrice(item.lineTotal)}`)
     .join("\n");
 
+  const addressParts = [customer.address, customer.area, customer.city];
+  if (customer.landmark?.trim()) addressParts.push(`Landmark: ${customer.landmark.trim()}`);
+
   return [
-    "Hello, I want to place an order.",
+    "Hello, I want to place an order!",
     "",
-    "Products:",
+    "*Order Details:*",
     lines,
     "",
-    `Total: ${formatPrice(total)}`,
+    `*Total: ${formatPrice(total)}*`,
     "",
-    `Customer Name: ${safeName}`,
+    "*Delivery Information:*",
+    `Name: ${customer.name.trim()}`,
+    `Phone: ${customer.phone.trim()}`,
+    `City: ${customer.city}`,
+    `Area: ${customer.area.trim()}`,
+    `Address: ${customer.address.trim()}`,
+    ...(customer.landmark?.trim() ? [`Landmark: ${customer.landmark.trim()}`] : []),
   ].join("\n");
 };
 
